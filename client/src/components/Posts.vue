@@ -7,8 +7,8 @@
     </div>
     <ul class="post-list">
       <li v-for="(post, index) in posts" :key="index" class="post-item">
-        <div class="post-date">{{post.date}}</div>
-        <div class="post-text">{{post.text}}</div>
+        <div class="post-text">{{post.title}}</div>
+        {{post}}
         <div class="post-button">
           <button @click="deletePost(post.id)">Delete post</button>
         </div>
@@ -32,13 +32,16 @@ export default {
 
   created: function() {
     var that = this;
-    axios.get('/posts').then(function(response) {
+    axios.get('/test').then(function(response) {
+      console.log(response.data)
       that.posts = response.data;
+      console.log(that.posts)
     });
   },
 
   methods: {
     addPost: function() {
+      console.log("test------------------------")
       var that = this;
       axios.post('/posts', {text: this.formInput}).then(function(response) {
         that.posts.unshift(response.data);

@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- <nav>
-      <span>Vue router links: </span>
       <router-link to="/" exact>Home</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/test">test</router-link>
       <router-link to="/contacts">Contacts</router-link>
       <router-link to="/!@#$%">404 page</router-link>
     </nav> -->

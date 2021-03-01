@@ -5,8 +5,7 @@ var db = require('./database.js');
 var moment = require('moment');
 var api = "https://jsonplaceholder.typicode.com";
 
-
-app.get('/posts', function (req, res) {
+app.get('/test', function (req, res) {
   axios.get(api + '/todos/1')
   .then(response => {
     console.log(response.data)

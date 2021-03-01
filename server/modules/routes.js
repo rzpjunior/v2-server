@@ -5,7 +5,7 @@ var app = express();
 app.set('views', path.join(__dirname, '../views'));
 
 app.get('/', function (req, res) {
-  res.render('index.ejs', { title: 'vue-express starter' });
+  res.render('index.ejs', { title: 'test' });
 });
 
 app.get('/example-server-route', function (req, res) {
