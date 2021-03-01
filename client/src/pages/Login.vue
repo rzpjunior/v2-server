@@ -9,7 +9,7 @@
       placeholder="password"
       v-model="form.password"
       name="password"
-      type="text">
+      type="text"><br><br>
       <button @click="onSubmit">login</button>
   </div>
 </template>
