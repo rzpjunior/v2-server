@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./modules/routes.js');
 var api = require('./modules/api.js');
-var api_r = require('./modules/api_r.js');
 
 var app = express();
 
@@ -21,7 +20,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(api);
-app.use(api_r);
 app.use(routes); // route mesti di bawah api untuk deteksi undeclare route dan page 404
 
 var server = http.createServer(app);

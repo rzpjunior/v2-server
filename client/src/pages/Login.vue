@@ -56,18 +56,23 @@ export default {
     async onSubmit() {
       try {
         const response = await AuthService.login(this.form);
+        console.log(response.data)
         this.msg = response.msg;
         const token = response.data.token;
         const staff = response.data.staff;
+        console.log(token)
+        console.log(staff)
         this.$store.dispatch("login", { token, staff });
         const priv = await this.$http
           .get("/permission/privilege")
           .then((response) => response.data);
         localStorage.setItem("priv", priv.data);
-        // this.$router.push("/Home");
-        window.location.reload("/test")
+        console.log(priv)
+        this.$router.push("/Home");
+        console.log("BISA ANJING")
+        // window.location.reload("/test")
       } catch (error) {
-        this.error = error.response.data.errors;
+        console.log(error, "ah anjing");
       }
     },
   },

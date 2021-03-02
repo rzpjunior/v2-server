@@ -24,6 +24,7 @@
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "vue": "^2.0.1",
+    "vue-axios": "^3.2.4",
     "vue-cli-plugin-vuetify": "^2.1.0",
     "vue-router": "^3.0.1",
     "vuetify": "^2.4.5",

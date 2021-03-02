@@ -6,13 +6,12 @@ import Login from '../pages/Login.vue';
 import ContactsPage from '../pages/ContactsPage.vue';
 import AboutPage from '../pages/AboutPage.vue';
 import NotFound from '../pages/404.vue';
-import test_page from '../pages/test_page.vue';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     { path: '/', component: Login },
-    { path: '/test/', component: test_page },
+    { path: '/Home/', component: IndexPage },
     { path: '/contacts/', component: ContactsPage },
     { path: '/about/', component: AboutPage },
     { path: '*', component: NotFound }
