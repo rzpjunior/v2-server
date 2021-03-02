@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     { path: '/', component: Login },
-    { path: '/Home/', component: IndexPage },
+    { path: '/Home/', component: IndexPage, meta:{ auth: true} },
     { path: '/contacts/', component: ContactsPage },
     { path: '/about/', component: AboutPage },
     { path: '*', component: NotFound }

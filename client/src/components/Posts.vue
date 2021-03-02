@@ -32,14 +32,29 @@ export default {
 
   created: function() {
     var that = this;
-    axios.get('/test').then(function(response) {
+    this.$http.get('/inventory/uom').then(function(response) {
       console.log(response.data)
-      that.posts = response.data;
+      that.posts = response.data.data;
       console.log(that.posts)
     });
   },
+  computed: {
+      getStatusLogin: function () {
+          if(this.$store.getters.isLoggedIn !== ''){
+              return true
+          }else{
+              return false
+          }
+      }
+  },
 
   methods: {
+    // renderData(){
+    //     this.$http.get("/inventory/uom").then(response => {
+    //         this.posts = response.data.data
+    //     });
+    // },
+
     addPost: function() {
       console.log("test------------------------")
       var that = this;

@@ -87,14 +87,24 @@ exports.default = {
 
   created: function created() {
     var that = this;
-    _axios2.default.get('/test').then(function (response) {
+    this.$http.get('/inventory/uom').then(function (response) {
       console.log(response.data);
-      that.posts = response.data;
+      that.posts = response.data.data;
       console.log(that.posts);
     });
   },
+  computed: {
+    getStatusLogin: function getStatusLogin() {
+      if (this.$store.getters.isLoggedIn !== '') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
 
   methods: {
+
     addPost: function addPost() {
       console.log("test------------------------");
       var that = this;
@@ -390,6 +400,7 @@ _axios2.default.interceptors.response.use(function (response) {
  */
 ajax.interceptors.request.use(function (config) {
     var token = _store2.default.getters.isLoggedIn;
+    console.log(token, "---------------------------");
 
     if (token !== '') {
         config.headers['Authorization'] = 'Bearer ' + token;
@@ -481,7 +492,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _vue2.default.use(_vueRouter2.default);
 var router = new _vueRouter2.default({
-  routes: [{ path: '/', component: _Login2.default }, { path: '/Home/', component: _IndexPage2.default }, { path: '/contacts/', component: _ContactsPage2.default }, { path: '/about/', component: _AboutPage2.default }, { path: '*', component: _2.default }]
+  routes: [{ path: '/', component: _Login2.default }, { path: '/Home/', component: _IndexPage2.default, meta: { auth: true } }, { path: '/contacts/', component: _ContactsPage2.default }, { path: '/about/', component: _AboutPage2.default }, { path: '*', component: _2.default }]
 });
 
 exports.default = router;
@@ -503,16 +514,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     login: function login(credentials) {
         return _axios2.default.post('/auth', credentials).then(function (response) {
-            return response.data;
-        });
-    },
-    signUp: function signUp(credentials) {
-        return _axios2.default.post(url + 'sign-up/', credentials).then(function (response) {
-            return response.data;
-        });
-    },
-    getSecretContent: function getSecretContent() {
-        return _axios2.default.get(url + 'secret-route/').then(function (response) {
             return response.data;
         });
     }

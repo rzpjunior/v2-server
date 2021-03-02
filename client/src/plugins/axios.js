@@ -35,6 +35,7 @@ axios.interceptors.response.use(
 ajax.interceptors.request.use(
     (config) => {
         let token = store.getters.isLoggedIn
+        console.log(token, "---------------------------")
 
         if (token !== '') {
             config.headers['Authorization'] = `Bearer ${ token }`;
