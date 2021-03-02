@@ -8,7 +8,7 @@ app.post('/auth', function (req, res) {
     email: req.body.email,
     password: req.body.password
   }).then(response => {
-    console.log(response)
+    console.log(response.data.data.token)
     res.send(response.data);
   }).catch(error => {
     console.log(error)
