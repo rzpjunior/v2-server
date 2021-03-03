@@ -1,4 +1,5 @@
 var port = process.env.PORT || 3030;
+var token = 'test'
 var http = require('http');
 var express = require('express');
 var compression = require('compression');
@@ -10,7 +11,12 @@ var routes = require('./modules/routes.js');
 var api = require('./modules/api.js');
 const session = require('express-session');
 const redis = require('redis');
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+    host: "ec2-54-254-254-225.ap-southeast-1.compute.amazonaws.com",
+    port: 6379,
+    no_ready_check: true,
+    auth_pass: 'edenfarm.123'
+  });
 const redisStore = require('connect-redis')(session);
 
 
@@ -21,22 +27,16 @@ redisClient.on('error', (err) => {
   });
 
 app.use(session({
-    // secret: 'edenfarm.1234!',
-    name: '_redisPractice',
-    // resave: false,
+    secret: token,
+    name: 'bearerToken',
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false }, 
-    store: new redisStore(
-        { 
-            host: '54.254.254.225', 
-            client: redisClient, 
-            port: 6379,
-            password: 'edenfarm.123',
-            tls: {},
-            ttl: 86400
-        }),
+    cookie: {
+      secure: true,
+      httpOnly: true,
+    },
+    store: new redisStore({ client: redisClient, }),
 }));
-
 
 
 app.set('view engine', 'ejs');
